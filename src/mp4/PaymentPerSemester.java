@@ -46,5 +46,16 @@ public class PaymentPerSemester {
             studentToRemove.removePaymentPerSemester(this);
         }
     }
-    
+
+    public String getShortInfo() {
+        return String.format(
+            "PaymentPerSemester{serialNumber=%d, amountOfPayment=%f",
+            serialNumber,
+            amountOfPayment    
+        );
+    }
+    @Override
+    public String toString() {
+         return getShortInfo().concat(getStudent().getShortInfo());
+    }
 }

@@ -20,7 +20,7 @@ public class MP4 {
     
     
     public static void ordered(){
-        Student student1, student2;
+        Student student1 = null, student2 = null;
         try {
             student1 = new Student("Ala", "Kota", "s13", 3, 0);
             student2 = new Student("Tomasz", "Mokira", "s3", 5, 1);
@@ -35,5 +35,16 @@ public class MP4 {
             System.err.println(e.getMessage());
         }
         
+        PaymentPerSemester paymentPerSemester1 = new PaymentPerSemester(1, 300),
+                paymentPerSemester2 = new PaymentPerSemester(2, 400);
+        student1.addPaymentPerSemester(paymentPerSemester1);
+        student1.addPaymentPerSemester(paymentPerSemester2);
+        
+        System.out.println("Student1: " + student1);
+        System.out.println("Student2: " + student2);
+        System.out.println("Payment1: " + paymentPerSemester1);
+        System.out.println("Payment2: " + paymentPerSemester2);
     }
+    
+    
 }

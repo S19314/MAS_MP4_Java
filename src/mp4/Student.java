@@ -122,4 +122,30 @@ public class Student {
     public PaymentPerSemester[] getPaymentPerSemesters(){
         return payments.toArray(new PaymentPerSemester[0]);
     }
+    
+    public String getShortInfo(){
+        return String.format(
+            "Student:{firstName=%s, secondName=%s, studentNumber=%s, currentSemestrNumber=%d, quantityITN=%d",
+            firstName,
+            secondName, 
+            studentNumber,
+            currentSemestrNumber,
+            quantityITN,
+            payments 
+        );
+    }
+
+    @Override
+    public String toString() {
+        String baseInfo = getShortInfo().concat(", paymentsPerSemestrs={\n");
+        
+        PaymentPerSemester[] paymentsPerSemesters = getPaymentPerSemesters();
+        StringBuilder stringBuilder = new StringBuilder(baseInfo);
+        for(int i = 0; i < paymentsPerSemesters.length; i++){
+            stringBuilder.append(paymentsPerSemesters[i].getShortInfo());
+        }
+        return stringBuilder.toString();
+    }
+    
+    
 }
