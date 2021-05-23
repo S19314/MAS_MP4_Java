@@ -20,7 +20,7 @@ public class Student {
     private static Map<String, Set<String>> uniqueContainerMap = new HashMap<String, Set<String>>();
     
     private List<PaymentPerSemester> payments = new ArrayList<PaymentPerSemester>();
-    
+    private List<ChosenSpecialization> specializations = new ArrayList<ChosenSpecialization>();
     /*
     public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) {
         this.firstName = firstName;
@@ -121,6 +121,26 @@ public class Student {
     
     public PaymentPerSemester[] getPaymentPerSemesters(){
         return payments.toArray(new PaymentPerSemester[0]);
+    }
+    
+    public void addChosenSpecialization(ChosenSpecialization chosenSpecialization){
+        if(!(chosenSpecialization == null) && !specializations.contains(chosenSpecialization)){
+            specializations.add(chosenSpecialization);
+            
+            chosenSpecialization.setStudent(this);
+        }
+    }
+    
+    public void removeChosenSpecialization(ChosenSpecialization chosenSpecialization){
+        if(specializations.contains(chosenSpecialization)){
+            specializations.remove(chosenSpecialization);
+            
+            chosenSpecialization.removeStudent(this);
+        }
+    }
+    
+    public ChosenSpecialization[] getChosenSpecialization(){
+        return specializations.toArray(new ChosenSpecialization[0]);
     }
     
     public String getShortInfo(){
