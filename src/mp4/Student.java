@@ -166,11 +166,9 @@ public class Student {
         }
         stringBuilder.append(",\n chosenSpecializations: ");
         ChosenSpecialization[] chosenSpecializations = getChosenSpecialization();
-        for(int i = 0; i < paymentsPerSemesters.length; i++){
+        for(int i = 0; i < chosenSpecializations.length; i++){
             stringBuilder.append(chosenSpecializations[i].getShortInfo() + ' ');
         }
         return stringBuilder.toString();
     }
-    
-    
 }

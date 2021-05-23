@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ChosenSpecialization {
     private String state;
-    private String seialNumber;
+    private String serialNumber;
     private LocalDate startDate,
             plannedEndDate;
 
@@ -17,14 +17,14 @@ public class ChosenSpecialization {
     
     public ChosenSpecialization(
             String state, 
-            String seialNumber, 
+            String serialNumber, 
             LocalDate startDate,
             LocalDate plannedEndDate,
             Student student,
             Specialization specialization
     ) {
         this.setState(state);
-        this.setSeialNumber(seialNumber);
+        this.setSerialNumber(serialNumber);
         this.setStartDate(startDate);
         this.setPlannedEndDate(plannedEndDate);
         this.setStudent(student);
@@ -39,12 +39,12 @@ public class ChosenSpecialization {
         this.state = state;
     }
 
-    public String getSeialNumber() {
-        return seialNumber;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setSeialNumber(String seialNumber) {
-        this.seialNumber = seialNumber;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public LocalDate getStartDate() {
@@ -104,12 +104,11 @@ public class ChosenSpecialization {
     }
 
     public String getShortInfo() {
-        return String.format(
-            "ChosenSpecialization{state=%s, seialNumber=%s, startDate=%t, plannedEndDate=%t",
+        return String.format("ChosenSpecialization{state=%s, seialNumber=%s, startDate=%s, plannedEndDate=%s",
             state,
-            seialNumber,
-            startDate,
-            plannedEndDate
+            serialNumber,
+            startDate.toString(),
+            plannedEndDate.toString()
         );
     }
 

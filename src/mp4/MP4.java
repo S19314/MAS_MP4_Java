@@ -97,7 +97,7 @@ E_3D. Multimedia – Animacja 3D
                     specialization2
             );
             
-            chosenSpecialization1 = new ChosenSpecialization(
+            chosenSpecialization2 = new ChosenSpecialization(
                     "In process",
                     "KL15",
                     LocalDate.now(), 
