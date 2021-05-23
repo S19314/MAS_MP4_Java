@@ -1,15 +1,23 @@
 package mp4;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 public class Student {
     private String firstName;
     private String secondName;
-    private String numerS; // UNIQUE !!!!!
+    private String studentNumber; // UNIQUE !!!!!
     private int currentSemestrNumber;
     private int quantityITN;
     
     public final static int minimalCurrentSemestrNumber = 0;
     public final static int minimalQuantityITN = 0;
-
+    public final static String variableNameNumerS = "NumberS";
+    private Map<String, Set<String>> uniqueContainerMap = new HashMap<String, HashSet<String>>();
+    
+    /*
     public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) {
         this.firstName = firstName;
         this.secondName = secondName;
@@ -17,7 +25,14 @@ public class Student {
         this.currentSemestrNumber = currentSemestrNumber;
         this.quantityITN = quantityITN;
     }
-
+    */
+    public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) throws Exception {
+        this.setFirstName(firstName);
+        this.setSecondName(secondName);
+        this.setNumerS(numerS);
+        this.setCurrentSemestrNumber(currentSemestrNumber);
+        this.setQuantityITN(quantityITN);
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -35,11 +50,15 @@ public class Student {
     }
 
     public String getNumerS() {
-        return numerS;
+        return studentNumber;
     }
 
     public void setNumerS(String numerS) {
-        this.numerS = numerS;
+        Set uniqueNumberS = new HashSet<String>()
+        if(!uniqueContainerMap.containsKey(variableNameNumerS)){
+            uniqueContainerMap.put(variableNameNumerS, );
+        }
+        this.studentNumber = numerS;
     }
 
     public int getCurrentSemestrNumber() {
