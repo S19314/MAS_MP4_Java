@@ -1,7 +1,9 @@
 package mp4;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +18,8 @@ public class Student {
     public final static int minimalQuantityITN = 0;
     public final static String variableNameStudentNumer = "NumberS";
     private Map<String, Set<String>> uniqueContainerMap = new HashMap<String, Set<String>>();
+    
+    private List<PaymentPerSemester> payments = new ArrayList<PaymentPerSemester>();
     
     /*
     public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) {
@@ -98,4 +102,24 @@ public class Student {
         }
         this.quantityITN = quantityITN;
     }    
+
+    public void addPaymentPerSemester(PaymentPerSemester paymentPerSemester){
+        if(!(paymentPerSemester == null) && !payments.contains(paymentPerSemester)){
+            payments.add(paymentPerSemester);
+            
+            paymentPerSemester.setStudent(this);
+        }
+    }
+    
+    public void removePaymentPerSemester(PaymentPerSemester paymentPerSemester){
+        if(payments.contains(paymentPerSemester)){
+            payments.remove(paymentPerSemester);
+            
+            paymentPerSemester.removeStudent();
+        }
+    }
+    
+    public PaymentPerSemester[] getPaymentPerSemesters(){
+        return payments.toArray(new PaymentPerSemester[0]);
+    }
 }
