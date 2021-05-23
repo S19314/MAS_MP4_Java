@@ -115,7 +115,7 @@ public class Student {
         if(payments.contains(paymentPerSemester)){
             payments.remove(paymentPerSemester);
             
-            paymentPerSemester.removeStudent();
+            paymentPerSemester.removeStudent(this);
         }
     }
     
