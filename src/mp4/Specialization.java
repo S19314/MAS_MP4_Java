@@ -10,8 +10,9 @@ public class Specialization {
     
     private final static int maxDurationInDays = 730;
     private final static int minimalDurationInDays = 365;
+    // 1. Atrybuty ograniczone.
 
-    private List<ChosenSpecialization> specializations = new ArrayList<ChosenSpecialization>();
+    private List<ChosenSpecialization> chosenSpecializations = new ArrayList<ChosenSpecialization>();
     
     public Specialization(String name, String shortName, int durationInDays) throws Exception {
         this.setDurationInDays(durationInDays);
@@ -57,22 +58,48 @@ public class Specialization {
     }
     
     public void addChosenSpecialization(ChosenSpecialization chosenSpecialization){
-        if(!(chosenSpecialization == null) && !specializations.contains(chosenSpecialization)){
-            specializations.add(chosenSpecialization);
+        if(!(chosenSpecialization == null) && !chosenSpecializations.contains(chosenSpecialization)){
+            chosenSpecializations.add(chosenSpecialization);
             
             chosenSpecialization.setSpecialization(this);
         }
     }
     
     public void removeChosenSpecialization(ChosenSpecialization chosenSpecialization){
-        if(specializations.contains(chosenSpecialization)){
-            specializations.remove(chosenSpecialization);
+        if(chosenSpecializations.contains(chosenSpecialization)){
+            chosenSpecializations.remove(chosenSpecialization);
             
             chosenSpecialization.removeSpecialization(this);
         }
     }
     
     public ChosenSpecialization[] getChosenSpecialization(){
-        return specializations.toArray(new ChosenSpecialization[0]);
+        return chosenSpecializations.toArray(new ChosenSpecialization[0]);
     }
+
+    public String getShortInfo(){
+        return String.format(
+            "Specialization{ name=%s, shortName=%s, durationInDays=%d ",
+            shortName,
+            name,
+            durationInDays
+        );
+    }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder(
+                this.getShortInfo().concat("\nchosenSpecializations:")
+        );
+        ChosenSpecialization[] chosenSpecializations = getChosenSpecialization();
+        for(int i = 0; i <  chosenSpecializations.length; i++){
+            stringBuilder.append(
+                    chosenSpecializations[i].getShortInfo().concat(", ")
+            );
+        }
+        
+        return stringBuilder.toString();
+    }
+    
+    
+    
 }

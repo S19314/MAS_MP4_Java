@@ -162,7 +162,12 @@ public class Student {
         PaymentPerSemester[] paymentsPerSemesters = getPaymentPerSemesters();
         StringBuilder stringBuilder = new StringBuilder(baseInfo);
         for(int i = 0; i < paymentsPerSemesters.length; i++){
-            stringBuilder.append(paymentsPerSemesters[i].getShortInfo());
+            stringBuilder.append(paymentsPerSemesters[i].getShortInfo() + ' ');
+        }
+        stringBuilder.append(",\n chosenSpecializations: ");
+        ChosenSpecialization[] chosenSpecializations = getChosenSpecialization();
+        for(int i = 0; i < paymentsPerSemesters.length; i++){
+            stringBuilder.append(chosenSpecializations[i].getShortInfo() + ' ');
         }
         return stringBuilder.toString();
     }

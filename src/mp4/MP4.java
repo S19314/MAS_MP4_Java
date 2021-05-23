@@ -5,6 +5,9 @@
  */
 package mp4;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 /**
  *
  * @author admin
@@ -14,13 +17,17 @@ public class MP4 {
     /**
      * @param args the command line arguments
      */
+    
+    public static Student student1 = null,
+            student2 = null;
     public static void main(String[] args) {
         ordered();
+        bag();
     }
     
     
     public static void ordered(){
-        Student student1 = null, student2 = null;
+        
         try {
             student1 = new Student("Ala", "Kota", "s13", 3, 0);
             student2 = new Student("Tomasz", "Mokira", "s3", 5, 1);
@@ -44,6 +51,67 @@ public class MP4 {
         System.out.println("Student2: " + student2);
         System.out.println("Payment1: " + paymentPerSemester1);
         System.out.println("Payment2: " + paymentPerSemester2);
+    }
+    
+    
+    
+    
+
+
+/*
+B. Programowanie systemowe i sieciowe
+
+E. Multimedia
+
+E_3D. Multimedia – Animacja 3D
+*/
+    
+    public static void bag() {
+        Specialization specialization1 = null, specialization2 = null;
+        try {
+            specialization1 = new Specialization("A_BD", "Bazy danych", 600);
+            specialization2 = new Specialization("A_IO", "Inżynieria oprogramowania i baz danych", 414);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        try {
+            Specialization specialization3 = new Specialization(
+                    "D", 
+                    "Inteligentne systemy przetwarzania danych",
+                    314
+            );
+        } catch (Exception e) {
+            System.err.println("Should be Exception about less days.");
+            System.err.println(e.getMessage());
+        }
+        
+        ChosenSpecialization chosenSpecialization1 = null,
+                chosenSpecialization2 = null;
+        try {
+            chosenSpecialization1 = new ChosenSpecialization(
+                    "Confirmed",
+                    "VS15",
+                    LocalDate.now(), 
+                    LocalDate.of(2023, Month.MARCH, 15),
+                    student1,
+                    specialization2
+            );
+            
+            chosenSpecialization1 = new ChosenSpecialization(
+                    "In process",
+                    "KL15",
+                    LocalDate.now(), 
+                    LocalDate.of(2023, Month.JULY, 15),
+                    student1,
+                    specialization1
+            );
+            
+            System.out.println(chosenSpecialization1);
+            System.out.println(chosenSpecialization2);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
     }
     
     

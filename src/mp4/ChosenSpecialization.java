@@ -15,11 +15,20 @@ public class ChosenSpecialization {
     private Student student = null;
     private Specialization specialization = null;
     
-    public ChosenSpecialization(String state, String seialNumber, LocalDate startDate, LocalDate plannedEndDate) {
+    public ChosenSpecialization(
+            String state, 
+            String seialNumber, 
+            LocalDate startDate,
+            LocalDate plannedEndDate,
+            Student student,
+            Specialization specialization
+    ) {
         this.setState(state);
         this.setSeialNumber(seialNumber);
         this.setStartDate(startDate);
         this.setPlannedEndDate(plannedEndDate);
+        this.setStudent(student);
+        this.setSpecialization(specialization);
     }
     
     public String getState() {
@@ -106,6 +115,10 @@ public class ChosenSpecialization {
 
     @Override
     public String toString() {
-        return getShortInfo().concat(student.getShortInfo());
+        return getShortInfo()
+                + " " + 
+                getStudent().getShortInfo() 
+                + ",  " + 
+                getSpecialization().getShortInfo();
     }
 }
