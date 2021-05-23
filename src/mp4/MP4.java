@@ -71,6 +71,8 @@ E_3D. Multimedia – Animacja 3D
         try {
             specialization1 = new Specialization("A_BD", "Bazy danych", 600);
             specialization2 = new Specialization("A_IO", "Inżynieria oprogramowania i baz danych", 414);
+            System.out.println(specialization1);
+            System.out.println(specialization2);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -96,7 +98,7 @@ E_3D. Multimedia – Animacja 3D
                     student1,
                     specialization2
             );
-            
+        
             chosenSpecialization2 = new ChosenSpecialization(
                     "In process",
                     "KL15",
@@ -105,11 +107,12 @@ E_3D. Multimedia – Animacja 3D
                     student1,
                     specialization1
             );
-            
+        
             System.out.println(chosenSpecialization1);
             System.out.println(chosenSpecialization2);
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            e.printStackTrace();
         }
         
     }

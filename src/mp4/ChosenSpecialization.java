@@ -10,10 +10,12 @@ public class ChosenSpecialization {
     private LocalDate startDate,
             plannedEndDate;
 
+    public static int maxAllowedAmountITN = 5;
     
 //    private List<Student> students = new ArrayList<Student>();
     private Student student = null;
     private Specialization specialization = null;
+    
     
     public ChosenSpecialization(
             String state, 
@@ -22,7 +24,14 @@ public class ChosenSpecialization {
             LocalDate plannedEndDate,
             Student student,
             Specialization specialization
-    ) {
+    ) throws Exception {
+        
+        if(student == null){
+            throw new Exception("Student in ChosenSpecialization can't be null.");
+        }
+        if(specialization == null){
+            throw new Exception("Specialization in ChosenSpecialization can't be null.");
+        }
         this.setState(state);
         this.setSerialNumber(serialNumber);
         this.setStartDate(startDate);
@@ -67,8 +76,11 @@ public class ChosenSpecialization {
         return student;
     }
     
-    public void setStudent(Student newStudent) {
+    public void setStudent(Student newStudent) throws Exception {
         if((getStudent() == null) && newStudent != null){
+            if(newStudent.getQuantityITN() > maxAllowedAmountITN){
+                throw new Exception("Student can't chose specialization till he or she has more then five ITNs.");
+            }
             this.student = newStudent;
             
             newStudent.addChosenSpecialization(this);
@@ -88,7 +100,7 @@ public class ChosenSpecialization {
     }
     
     public void setSpecialization(Specialization newSpecialization) {
-        if((getSpecialization() == null) && newSpecialization != null){
+          if((getSpecialization() == null) && newSpecialization != null){
             this.specialization = newSpecialization;
             
             newSpecialization.addChosenSpecialization(this);

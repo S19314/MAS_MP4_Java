@@ -30,7 +30,13 @@ public class Student {
         this.quantityITN = quantityITN;
     }
     */
-    public Student(String firstName, String secondName, String studentNumber, int currentSemestrNumber, int quantityITN) throws Exception {
+    public Student(
+            String firstName,
+            String secondName, 
+            String studentNumber, 
+            int currentSemestrNumber, 
+            int quantityITN
+    ) throws Exception {
         this.setFirstName(firstName);
         this.setSecondName(secondName);
         this.setStudentNumber(studentNumber);
@@ -123,7 +129,7 @@ public class Student {
         return payments.toArray(new PaymentPerSemester[0]);
     }
     
-    public void addChosenSpecialization(ChosenSpecialization chosenSpecialization){
+    public void addChosenSpecialization(ChosenSpecialization chosenSpecialization) throws Exception {
         if(!(chosenSpecialization == null) && !specializations.contains(chosenSpecialization)){
             specializations.add(chosenSpecialization);
             
