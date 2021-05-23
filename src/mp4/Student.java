@@ -8,7 +8,7 @@ import java.util.Set;
 public class Student {
     private String firstName;
     private String secondName;
-    private String studentNumber; // UNIQUE !!!!!
+    private String studentNumber;
     private int currentSemestrNumber;
     private int quantityITN;
     
@@ -53,19 +53,20 @@ public class Student {
         return studentNumber;
     }
 
-    public void setStudentNumber(String studentNumber) {
-        //  А если переменную будут изменять? Необходимо, чтобы только в Map<Set> и
-        // хранилось.
-        Set<String> uniqueStudentNumber;
+    public void setStudentNumber(String studentNumber) throws Exception {
+        Set<String> uniqueStudentNumberSet;
         if(uniqueContainerMap.containsKey(variableNameStudentNumer)){
-            uniqueStudentNumber = uniqueContainerMap.get(variableNameStudentNumer);
-            uniqueStudentNumber.remove(getStudentNumber());
-            uniqueStudentNumber.add(studentNumber);
-            uniqueContainerMap.replace(variableNameStudentNumer, uniqueStudentNumber);
+            uniqueStudentNumberSet = uniqueContainerMap.get(variableNameStudentNumer);
+            if(uniqueStudentNumberSet.contains(studentNumber)){
+                throw new Exception(String.format("Student should have an unique number. %s is already exist.", studentNumber));
+            }
+            uniqueStudentNumberSet.remove(getStudentNumber());
+            uniqueStudentNumberSet.add(studentNumber);
+            uniqueContainerMap.replace(variableNameStudentNumer, uniqueStudentNumberSet);
         }else{
-            uniqueStudentNumber = new HashSet<String>();
-            uniqueStudentNumber.add(studentNumber);
-            uniqueContainerMap.put(variableNameStudentNumer, uniqueStudentNumber);
+            uniqueStudentNumberSet = new HashSet<String>();
+            uniqueStudentNumberSet.add(studentNumber);
+            uniqueContainerMap.put(variableNameStudentNumer, uniqueStudentNumberSet);
         }
         this.studentNumber = studentNumber;
     }
