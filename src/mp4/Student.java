@@ -14,8 +14,8 @@ public class Student {
     
     public final static int minimalCurrentSemestrNumber = 0;
     public final static int minimalQuantityITN = 0;
-    public final static String variableNameNumerS = "NumberS";
-    private Map<String, Set<String>> uniqueContainerMap = new HashMap<String, HashSet<String>>();
+    public final static String variableNameStudentNumer = "NumberS";
+    private Map<String, Set<String>> uniqueContainerMap = new HashMap<String, Set<String>>();
     
     /*
     public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) {
@@ -26,10 +26,10 @@ public class Student {
         this.quantityITN = quantityITN;
     }
     */
-    public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) throws Exception {
+    public Student(String firstName, String secondName, String studentNumber, int currentSemestrNumber, int quantityITN) throws Exception {
         this.setFirstName(firstName);
         this.setSecondName(secondName);
-        this.setNumerS(numerS);
+        this.setStudentNumber(studentNumber);
         this.setCurrentSemestrNumber(currentSemestrNumber);
         this.setQuantityITN(quantityITN);
     }
@@ -49,16 +49,25 @@ public class Student {
         this.secondName = secondName;
     }
 
-    public String getNumerS() {
+    public String getStudentNumber() {
         return studentNumber;
     }
 
-    public void setNumerS(String numerS) {
-        Set uniqueNumberS = new HashSet<String>()
-        if(!uniqueContainerMap.containsKey(variableNameNumerS)){
-            uniqueContainerMap.put(variableNameNumerS, );
+    public void setStudentNumber(String studentNumber) {
+        //  А если переменную будут изменять? Необходимо, чтобы только в Map<Set> и
+        // хранилось.
+        Set<String> uniqueStudentNumber;
+        if(uniqueContainerMap.containsKey(variableNameStudentNumer)){
+            uniqueStudentNumber = uniqueContainerMap.get(variableNameStudentNumer);
+            uniqueStudentNumber.remove(getStudentNumber());
+            uniqueStudentNumber.add(studentNumber);
+            uniqueContainerMap.replace(variableNameStudentNumer, uniqueStudentNumber);
+        }else{
+            uniqueStudentNumber = new HashSet<String>();
+            uniqueStudentNumber.add(studentNumber);
+            uniqueContainerMap.put(variableNameStudentNumer, uniqueStudentNumber);
         }
-        this.studentNumber = numerS;
+        this.studentNumber = studentNumber;
     }
 
     public int getCurrentSemestrNumber() {
