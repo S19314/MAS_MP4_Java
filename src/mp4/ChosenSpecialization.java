@@ -13,7 +13,8 @@ public class ChosenSpecialization {
     
 //    private List<Student> students = new ArrayList<Student>();
     private Student student = null;
-            
+    private Specialization specialization = null;
+    
     public ChosenSpecialization(String state, String seialNumber, LocalDate startDate, LocalDate plannedEndDate) {
         this.setState(state);
         this.setSeialNumber(seialNumber);
@@ -72,6 +73,26 @@ public class ChosenSpecialization {
             studentToRemove.removeChosenSpecialization(this);
         }
     }
+    
+    public Specialization getSpecialization() {
+        return specialization;
+    }
+    
+    public void setSpecialization(Specialization newSpecialization) {
+        if((getSpecialization() == null) && newSpecialization != null){
+            this.specialization = newSpecialization;
+            
+            newSpecialization.addChosenSpecialization(this);
+        }
+    }
+    
+    public void removeSpecialization(Specialization specializationToRemove){
+        if((getSpecialization() != null && this.getSpecialization() == specializationToRemove)){
+            this.specialization = null;
+            
+            specializationToRemove.removeChosenSpecialization(this);
+        }
+    }
 
     public String getShortInfo() {
         return String.format(
@@ -87,6 +108,4 @@ public class ChosenSpecialization {
     public String toString() {
         return getShortInfo().concat(student.getShortInfo());
     }
-    
-    
 }

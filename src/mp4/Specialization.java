@@ -1,5 +1,8 @@
 package mp4;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Specialization {
     private String name;
     private String shortName;
@@ -8,6 +11,8 @@ public class Specialization {
     private final static int maxDurationInDays = 730;
     private final static int minimalDurationInDays = 365;
 
+    private List<ChosenSpecialization> specializations = new ArrayList<ChosenSpecialization>();
+    
     public Specialization(String name, String shortName, int durationInDays) throws Exception {
         this.setDurationInDays(durationInDays);
         this.setName(name);
@@ -51,5 +56,23 @@ public class Specialization {
         this.durationInDays = durationInDays;
     }
     
+    public void addChosenSpecialization(ChosenSpecialization chosenSpecialization){
+        if(!(chosenSpecialization == null) && !specializations.contains(chosenSpecialization)){
+            specializations.add(chosenSpecialization);
+            
+            chosenSpecialization.setSpecialization(this);
+        }
+    }
     
+    public void removeChosenSpecialization(ChosenSpecialization chosenSpecialization){
+        if(specializations.contains(chosenSpecialization)){
+            specializations.remove(chosenSpecialization);
+            
+            chosenSpecialization.removeSpecialization(this);
+        }
+    }
+    
+    public ChosenSpecialization[] getChosenSpecialization(){
+        return specializations.toArray(new ChosenSpecialization[0]);
+    }
 }
