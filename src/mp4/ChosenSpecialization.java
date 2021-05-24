@@ -12,7 +12,7 @@ public class ChosenSpecialization {
 
     public static int maxAllowedAmountITN = 5;
     
-//    private List<Student> students = new ArrayList<Student>();
+
     private Student student = null;
     private Specialization specialization = null;
     

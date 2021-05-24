@@ -42,21 +42,20 @@ public class Subject {
         this.appearanceSemestrNumber = appearanceSemestrNumber;
     }
 
-
     public void addPassedPracticeStudent(Student student){
         if(!(student == null) && !passedPracticeStudents.contains(student)){
             passedPracticeStudents.add(student);
             
-            student.setSubject(this);
+            student.addPassedPracticeSubject(this);
         }
     }
     
     public void removePassedPracticeStudent(Student student){
         if(passedPracticeStudents.contains(student)){
             passedPracticeStudents.remove(student);
-            
-            student.removeSubject(this);
-        }
+          
+            student.removePassedPracticeSubject(this);  
+        } 
     }
 //    passedPracticeStudents
     public Student[] getPassedPracticeStudents(){
