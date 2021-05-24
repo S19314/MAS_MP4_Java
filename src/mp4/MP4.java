@@ -24,6 +24,7 @@ public class MP4 {
         ordered();
         bag();
         subset();
+        xor();
     }
     
     
@@ -150,6 +151,32 @@ E_3D. Multimedia – Animacja 3D
     }
     
     public static void xor(){
+        System.out.println("XOR");
+        FullTimeEducation fullTimeEducation = null;
+        try {
+            fullTimeEducation = new FullTimeEducation(
+                    "FUllTimePlan", 
+                    LocalDate.of(2021, Month.OCTOBER, 12),
+                    LocalDate.of(2022, Month.MARCH, 2)
+            );
+            student1.setFullTimeEducation(fullTimeEducation);
+            student1.setFullTimeEducation(fullTimeEducation);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
+        PartTimeEducation partTimeEducation = null;
+        try {
+            partTimeEducation = new PartTimeEducation(
+                    "FUllTimePlan", 
+                    LocalDate.of(2021, Month.OCTOBER, 12),
+                    LocalDate.of(2022, Month.MARCH, 2)
+            );
+            student1.setPartTimeEducation(partTimeEducation);
+        } catch (Exception e) {
+            System.err.println("Should be an exception about no oportunity dor setting PartTimeEducation while FullTimeEducation.");
+            System.err.println(e.getMessage());
+        }
         
     }
     
