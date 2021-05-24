@@ -72,5 +72,23 @@ public class FullTimeEducation {
     public Student[] getStudents(){
         return students.toArray(new Student[0]);
     }
-       
+    
+    public String getShortInfo(){
+        return String.format(
+            "FullTimeEducation{ lessonPlan=%s, startExamDate=%s, endExamDate=%s", 
+            lessonPlan,
+            startExamDate.toString(),
+            endExamDate.toString()
+        );
+    }
+    @Override
+    public String toString() {
+        Student[] students = getStudents();
+        StringBuilder stringBuilder = new StringBuilder(getShortInfo().concat("\n Students:{"));
+        for(int i = 0; i < students.length; i++){
+            stringBuilder.append(students[i].getShortInfo() + ' ');
+        }
+        stringBuilder.append('}');
+        return stringBuilder.toString();
+    }
 }

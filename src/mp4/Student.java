@@ -279,6 +279,14 @@ public class Student {
         for(int i = 0; i < chosenSpecializations.length; i++){
             stringBuilder.append(chosenSpecializations[i].getShortInfo() + ' ');
         }
+        stringBuilder.append("\n");
+        if(!isFullTimeEducationNotSet()){
+            stringBuilder.append(getFullTimeEducation().getShortInfo());
+            stringBuilder.append("\n");
+        }
+        if(!isPartTimeEducationNotSet()){
+            stringBuilder.append(getPartTimeEducation().getShortInfo());
+        }
         return stringBuilder.toString();
     }
 }

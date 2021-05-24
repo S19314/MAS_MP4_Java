@@ -147,7 +147,7 @@ E_3D. Multimedia – Animacja 3D
         subject1.addPassedExamStudent(student1);
         System.out.println("Subject 1 after:");
         System.out.println(subject1);
-        
+        System.out.println("");
     }
     
     public static void xor(){
@@ -160,7 +160,7 @@ E_3D. Multimedia – Animacja 3D
                     LocalDate.of(2022, Month.MARCH, 2)
             );
             student1.setFullTimeEducation(fullTimeEducation);
-            student1.setFullTimeEducation(fullTimeEducation);
+            student2.setFullTimeEducation(fullTimeEducation);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -177,7 +177,32 @@ E_3D. Multimedia – Animacja 3D
             System.err.println("Should be an exception about no oportunity dor setting PartTimeEducation while FullTimeEducation.");
             System.err.println(e.getMessage());
         }
+        System.out.println(partTimeEducation);
+        System.out.println(fullTimeEducation);
         
+        Student student5 = null; 
+        try {
+            student5 = new Student("A", "A", "s19000", 4, 0);
+        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        try {
+            student5.setPartTimeEducation(partTimeEducation);
+            student5.setFullTimeEducation(fullTimeEducation);
+        } catch (Exception e) {
+//            System.err.println("Should be an exception about no oportunity dor setting FullTimeEducation while PartTimeEducation.");
+//            System.err.println(e.getMessage());
+            System.out.println("Should be an exception about no oportunity dor setting FullTimeEducation while PartTimeEducation.");
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Student toString():");
+        System.out.println(student5);
+        System.out.println("Student partTimeEducation():");
+        System.out.println(partTimeEducation);
+        System.out.println("Student fullTimeEducation():");
+        System.out.println(fullTimeEducation);
     }
     
 }
