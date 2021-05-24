@@ -95,9 +95,6 @@ public class Subject {
             appearanceSemestrNumber
         );
     }
-
-    
-    
     
     @Override
     public String toString() {

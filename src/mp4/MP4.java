@@ -23,11 +23,12 @@ public class MP4 {
     public static void main(String[] args) {
         ordered();
         bag();
+        subset();
     }
     
     
     public static void ordered(){
-        
+        System.out.println("ordered");
         try {
             student1 = new Student("Ala", "Kota", "s13", 3, 0);
             student2 = new Student("Tomasz", "Mokira", "s3", 5, 1);
@@ -51,6 +52,7 @@ public class MP4 {
         System.out.println("Student2: " + student2);
         System.out.println("Payment1: " + paymentPerSemester1);
         System.out.println("Payment2: " + paymentPerSemester2);
+        System.out.println("");
     }
     
     
@@ -67,6 +69,7 @@ E_3D. Multimedia – Animacja 3D
 */
     
     public static void bag() {
+        System.out.println("bag");
         Specialization specialization1 = null, specialization2 = null;
         try {
             specialization1 = new Specialization("A_BD", "Bazy danych", 600);
@@ -114,8 +117,36 @@ E_3D. Multimedia – Animacja 3D
             System.err.println(e.getMessage());
             e.printStackTrace();
         }
-        
+        System.out.println("");
     }
     
+    public static void subset() {
+        System.out.println("subset");
+        Subject subject1 = null,
+                subject2 = null,
+                subject3 = null;
+        
+        try {
+                subject1 = new Subject("MAS", 6);
+                subject2 = new Subject("TAK", 1);
+                subject3 = new Subject("PPJ", 1);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
+        System.out.println("Shouldn't change");
+        System.out.println("Subject 1 before:");
+        System.out.println(subject1);
+        subject1.addPassedExamStudent(student1);
+        System.out.println("Subject 1 after:");
+        System.out.println(subject1);
+        
+        
+        subject1.addPassedPracticeStudent(student1);
+        subject1.addPassedExamStudent(student1);
+        System.out.println("Subject 1 after:");
+        System.out.println(subject1);
+        
+    }
     
 }
