@@ -149,4 +149,8 @@ E_3D. Multimedia – Animacja 3D
         
     }
     
+    public static void xor(){
+        
+    }
+    
 }

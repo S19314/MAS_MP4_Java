@@ -6,6 +6,9 @@
 package mp4;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -16,6 +19,10 @@ public class PartTimeEducation {
     private LocalDate startExamDate, 
             endExamDate;
 
+    
+    
+    private List<Student> students = new ArrayList<Student>();
+    
     public PartTimeEducation(String lessonPlan, LocalDate startExamDate, LocalDate endExamDate) {
         this.setLessonPlan(lessonPlan);
         this.setStartExamDate(startExamDate);
@@ -45,4 +52,27 @@ public class PartTimeEducation {
     public void setEndExamDate(LocalDate endExamDate) {
         this.endExamDate = endExamDate;
     }
+    
+    public void addStudent(Student student) throws Exception {
+        if( student != null && !students.contains(student)){
+            if(!student.isFullTimeEducationNotSet()){
+                throw new Exception("PartTimeEducation can't be installed if FullTimeEducation is already set.");
+            }
+            students.add(student);
+            student.setPartTimeEducation(this);
+        }
+    }
+    
+    public void removeStudent(Student student){
+        if(students.contains(student)){
+           students.remove(student);
+          
+           student.removePartTimeEducation(this);  
+        } 
+    }
+
+    public Student[] getStudents(){
+        return students.toArray(new Student[0]);
+    }
+    
 }

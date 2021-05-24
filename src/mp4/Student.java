@@ -23,6 +23,9 @@ public class Student {
     private List<ChosenSpecialization> specializations = new ArrayList<ChosenSpecialization>();
     private List<Subject> passedPracticeSubjects = new ArrayList<Subject>();
     private List<Subject> passedExamSubjects = new ArrayList<Subject>();
+    private FullTimeEducation fullTimeEducation = null;
+    private PartTimeEducation partTimeEducation = null;
+    
     /*
     public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) {
         this.firstName = firstName;
@@ -194,6 +197,61 @@ public class Student {
     public Subject[] getPassedExamSubjects(){
         return passedExamSubjects.toArray(new Subject[0]);
     }
+
+    public FullTimeEducation getFullTimeEducation() {
+        return fullTimeEducation;
+    }
+
+    public void setFullTimeEducation(FullTimeEducation fullTimeEducation) throws Exception {
+        if(isPartTimeEducationNotSet()){
+            if(getFullTimeEducation() != fullTimeEducation && fullTimeEducation != null){
+                fullTimeEducation.addStudent(this);
+                this.fullTimeEducation = fullTimeEducation;
+            }
+        }else{
+            throw new Exception("FullTimeEducaion can't be set, because partTimeEducaion is already set.");
+        }
+    }
+    
+    public void removeFullTimeEducation(FullTimeEducation fullTimeEducation){
+        if(isPartTimeEducationNotSet() && this.getFullTimeEducation() == fullTimeEducation){
+            fullTimeEducation.removeStudent(this);
+            this.fullTimeEducation = null;
+        }
+    }
+
+    public boolean isFullTimeEducationNotSet(){
+        return getFullTimeEducation() == null;
+    }
+    public boolean isPartTimeEducationNotSet(){
+        return getPartTimeEducation() == null;
+    }
+    public PartTimeEducation getPartTimeEducation() {
+        return partTimeEducation;
+    }
+
+    public void setPartTimeEducation(PartTimeEducation partTimeEducation) throws Exception {
+        if(isFullTimeEducationNotSet()){
+            if(getPartTimeEducation() != partTimeEducation && partTimeEducation != null){
+                partTimeEducation.addStudent(this);
+                this.partTimeEducation = partTimeEducation;
+            }
+        }else{
+            throw new Exception("PartTimeEducationcan't be set, because partTimeEducaion is already set.");
+        }
+    }
+    
+    public void removePartTimeEducation(PartTimeEducation partTimeEducation){
+        if(isFullTimeEducationNotSet() && this.getPartTimeEducation() == partTimeEducation){
+            partTimeEducation.removeStudent(this);
+            this.partTimeEducation = null;
+        }
+    }
+    
+    
+    
+    
+    
     
     public String getShortInfo(){
         return String.format(
