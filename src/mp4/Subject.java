@@ -52,14 +52,68 @@ public class Subject {
     
     public void removePassedPracticeStudent(Student student){
         if(passedPracticeStudents.contains(student)){
+//            passedExamStudents.remove(student);
+            removePassedExamStudent(student);
+            passedPracticeStudents.remove(student);
+            student.removePassedPracticeSubject(this);  
+        } 
+    }
+
+    public Student[] getPassedPracticeStudents(){
+        return passedPracticeStudents.toArray(new Student[0]);
+    }
+
+    //    passedExamStudents
+    public void addPassedExamStudent(Student student){
+//         if(!(student == null) && !passedPracticeStudents.contains(student)){
+        if( student != null && 
+           !passedExamStudents.contains(student) &&
+            passedPracticeStudents.contains(student)
+        ){
+            passedExamStudents.add(student);
+            
+            student.addPassedExamSubject(this);
+        }
+    }
+    
+    public void removePassedExamStudent(Student student){
+        if(passedExamStudents.contains(student)){
             passedPracticeStudents.remove(student);
           
             student.removePassedPracticeSubject(this);  
         } 
     }
-//    passedPracticeStudents
-    public Student[] getPassedPracticeStudents(){
-        return passedPracticeStudents.toArray(new Student[0]);
+
+    public Student[] getPassedExamStudents(){
+        return passedExamStudents.toArray(new Student[0]);
+    }
+    
+    public String getShortInfo(){
+        return String.format(
+            "Subject{name=%s, appearanceSemestrNumber=%d",
+            name,
+            appearanceSemestrNumber
+        );
+    }
+
+    
+    
+    
+    @Override
+    public String toString() {
+        String baseInfo = getShortInfo().concat(", passedPracticeStudents={\n");
+        
+        Student[] passedPracticeStudents = getPassedPracticeStudents();
+        StringBuilder stringBuilder = new StringBuilder(baseInfo);
+        for(int i = 0; i < passedPracticeStudents.length; i++){
+            stringBuilder.append(passedPracticeStudents[i].getShortInfo() + ' ');
+        }
+        stringBuilder.append(",\n passedExamStudents: ");
+        Student[] passedExamStudents = getPassedExamStudents();
+        for(int i = 0; i < passedExamStudents.length; i++){
+            stringBuilder.append(passedExamStudents[i].getShortInfo() + ' ');
+        }
+        return stringBuilder.toString();
     }
 
 

@@ -22,6 +22,7 @@ public class Student {
     private List<PaymentPerSemester> payments = new ArrayList<PaymentPerSemester>();
     private List<ChosenSpecialization> specializations = new ArrayList<ChosenSpecialization>();
     private List<Subject> passedPracticeSubjects = new ArrayList<Subject>();
+    private List<Subject> passedExamSubjects = new ArrayList<Subject>();
     /*
     public Student(String firstName, String secondName, String numerS, int currentSemestrNumber, int quantityITN) {
         this.firstName = firstName;
@@ -160,6 +161,7 @@ public class Student {
     
     public void removePassedPracticeSubject(Subject passedPracticeSubject){
         if(this.passedPracticeSubjects.contains(passedPracticeSubject)){
+            removePassedExamSubject(passedPracticeSubject);
             passedPracticeSubjects.remove(passedPracticeSubject);
             
             passedPracticeSubject.removePassedPracticeStudent(this);
@@ -170,7 +172,28 @@ public class Student {
         return passedPracticeSubjects.toArray(new Subject[0]);
     }
     
+    public void addPassedExamSubject(Subject newSubject){
+        if(!(newSubject == null) && 
+            !passedExamSubjects.contains(newSubject) &&
+            passedPracticeSubjects.contains(studentNumber)
+        ){
+            passedExamSubjects.add(newSubject);
+            
+            newSubject.addPassedExamStudent(this);
+        }
+    }
     
+    public void removePassedExamSubject(Subject passedExamSubject){
+        if(this.passedExamSubjects.contains(passedExamSubject)){
+            passedExamSubjects.remove(passedExamSubject);
+            
+            passedExamSubject.removePassedExamStudent(this);
+        }
+    }
+    
+    public Subject[] getPassedExamSubjects(){
+        return passedExamSubjects.toArray(new Subject[0]);
+    }
     
     public String getShortInfo(){
         return String.format(
